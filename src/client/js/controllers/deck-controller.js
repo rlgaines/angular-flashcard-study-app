@@ -12,6 +12,7 @@
 		  .then(function(decks){
 		  	console.log(decks.data)
 		  	return $scope.flashcards = decks.data
+		  	// decks.data where deck.user_id == AuthService.getUser().id;
 		  })
 	}  
 })();

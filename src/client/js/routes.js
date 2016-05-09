@@ -18,6 +18,12 @@
       // restricted: true,
       // preventLoggedIn: false
     })
+    .when('/new', {
+      templateUrl: 'templates/newdeck.html',
+      controller: 'deckController',
+      // restricted: true,
+      // preventLoggedIn: false
+    })
     .when('/register',{
       templateUrl: 'templates/register.html',
       controller: 'registerController',

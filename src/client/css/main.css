@@ -6,6 +6,7 @@ body {
 a {
   color: #00B7FF;
 }
+
 blockquote{
     border-left:none
 }
@@ -38,3 +39,25 @@ img{
     font-size: 19px;
     margin-top: -65px;
 }
+
+#recommended{
+    border-left-style: solid;
+    border-left-color: grey; 
+    float:right;
+    width: 400px;
+    overflow: scroll;
+}
+
+#recommended img{
+    margin-left: 90px;
+}
+
+#recommended h3:nth-child(2){
+    margin-left: 30%;
+}
+
+#recommended p{
+    margin-left: 10%;
+}
+
+
