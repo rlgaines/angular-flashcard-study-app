@@ -4,8 +4,6 @@ exports.up = function(knex, Promise) {
   	table.foreign('deck_id').references('id').inTable('decks');
   	table.text('question');
   	table.text('answer');
-  	table.string('image');
-
   })
 };
 

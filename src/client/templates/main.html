@@ -1,0 +1,33 @@
+<navbar-dir></navbar-dir>
+   
+<div class="container">
+  <div class="row">
+  	<div class="col-md-12">
+  		<div class="list-group">
+  			<a href="#/new" class="list-group-item list-group-item-info"><h3>Create a New Deck to Study</h3></a>
+  		</div>
+  	</div>	
+  </div>	
+  <hr>
+</div>
+<div class="container">
+  <div class="row" >
+  	<div class="col-md-4" ng-repeat="deck in flashcards">
+  		  <blockquote class="quote-box">
+      <p class="quote-text">
+      {{deck.name}}
+      </p>
+      <img src="{{deck.image}}">
+      <hr>
+      <div class="blog-post-actions">
+        <p class="blog-post-bottom pull-left">
+          {{deck.description}}
+        </p>
+        <p class="blog-post-bottom pull-right">
+          <a href="#/"><span class="badge quote-badge">Test Your Wit</span></a>&#x2190;
+        </p>
+      </div>
+    </blockquote>
+  	</div>
+  </div>
+</div>
