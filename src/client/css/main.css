@@ -15,6 +15,7 @@ blockquote{
     background-color: rgba(0, 0, 0, 0.2);   
 }
 
+
 .quote-box{
     
     overflow: hidden;
@@ -47,6 +48,7 @@ img{
     border-left-style: solid;
     border-left-color: grey; 
     float:right;
+    height: 600px;
     width: 400px;
     overflow: scroll;
 }
@@ -63,4 +65,27 @@ img{
     margin-left: 10%;
 }
 
+#quizes{
+    float: left;
+    margin-right: -50%;
+    overflow: scroll;
+    height: 480px;
+    width: 800px;
 
+}
+#scoreboard{
+  width: 800px;
+}
+
+
+#scoreboard .jumbotron{
+    height: 275px;
+}
+#scoreboard .jumbotron h1{
+    margin-top: -10px;
+}
+
+.right{
+    margin-right: 15px;
+    width: 100px;
+}

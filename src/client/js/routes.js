@@ -24,6 +24,12 @@
       // restricted: true,
       // preventLoggedIn: false
     })
+    .when('/:id/quiz', {
+      templateUrl: 'templates/quiz.html',
+      controller: 'deckController',
+      // restricted: true,
+      // preventLoggedIn: false
+    })
     .when('/register',{
       templateUrl: 'templates/register.html',
       controller: 'registerController',

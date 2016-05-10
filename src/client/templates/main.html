@@ -1,4 +1,3 @@
-<navbar-dir></navbar-dir>
    
 <div class="container">
   <div class="row">
@@ -13,21 +12,21 @@
 
 <recommended-quizes></recommended-quizes>
 
-<div class="container">
+<div class="container" >
   <div class="row" >
   	<div class="col-md-4" ng-repeat="deck in flashcards">
   		  <blockquote class="quote-box">
       <p class="quote-text">
       {{deck.name}}
       </p>
-      <img src="{{deck.image}}">
+      <img ng-src="{{deck.image}}">
       <hr>
       <div class="blog-post-actions">
         <p class="blog-post-bottom pull-left">
           {{deck.description}}
         </p>
         <p class="blog-post-bottom pull-right">
-          <a href="#/"><span class="badge quote-badge">Test Your Wit</span></a>&#x2190;
+          <a href="#/{{deck.id}}/quiz"><span class="badge quote-badge" ng-click="pullDeck(deck)">Test Your Wit</span></a>&#x2190;
         </p>
       </div>
     </blockquote>

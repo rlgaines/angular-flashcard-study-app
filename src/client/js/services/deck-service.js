@@ -14,6 +14,10 @@
       getDecks: function() {
         // console.log('user')
         return $http.get('/decks');
+      },
+
+      getSingleDeck: function(id){
+        return $http.get('/'+id +'/quiz');
       }
     };
   }

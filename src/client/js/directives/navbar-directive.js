@@ -13,8 +13,8 @@
       <a href="#/decks"><button type="button" class="btn btn-default navbar-btn">Home</button></a>
       <a href="#/logout"><button type="button" class="btn btn-default navbar-btn">Sign Out</button></a>
 
-    </nav>   
-`
+    </nav>   `,
+    transclude: true
    }
 
 

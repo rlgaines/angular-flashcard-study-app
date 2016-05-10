@@ -13,7 +13,7 @@
    <h3>Recommended Quizes:</h3>    
     <div class="list-group" ng-repeat="deck in flashcards">
      <a href="#" class="list-group-item default">
-      <img src="{{deck.image}}">
+      <img ng-src="{{deck.image}}">
       <h3 class="list-group-item-heading">{{deck.name}}</h3>
        <p class="list-group-item-text">{{deck.description}}</p>
      </a>
