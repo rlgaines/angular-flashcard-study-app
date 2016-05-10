@@ -4,20 +4,20 @@
 	angular.module('myApp')
 	  .controller('newDeckController', newDeckController);
 
-	newDeckController.$inject = ['$rootScope', '$scope', 'newDeckService'];
+	newDeckController.$inject = ['$rootScope', '$scope', '$location', 'newDeckService'];
 	
-	function newDeckController($rootScope, $scope, newDeckService) {
+	function newDeckController($rootScope, $scope, $location, newDeckService) {
 		$scope.questions = [];
 		$scope.cards = [];
 		$scope.moreQuestions = function(){
-			$scope.questions.push('hey')
+			$scope.questions.push('')
 
 		}
 		$scope.submitDeck = function(data){
-			console.log(data)
+			return newDeckService.newDeck(data)
 		}
 		$scope.submitQuestions = function(data){
-			console.log('Controller',data)
+			return newDeckService.moreQuestions(data)
 		}
 	}  
 })();

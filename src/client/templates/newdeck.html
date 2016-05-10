@@ -30,32 +30,13 @@
 	  </div>
 	  <br>	  
 	  <hr>
-	 <!-- <div class="row"> 
-	   <h2>Cards</h2>
-	   <br>
-
-	     <div class="col-md-6">
-		  <div class="input-group">
-		    <span class="input-group-addon" id="sizing-addon2">Question</span>
-		    <input type="text" class="form-control" placeholder="" ng-model="cards.question" aria-describedby="sizing-addon2">
-		  </div>
-		</div> 
-		 <div class="col-md-6">
-		  <div class="input-group">
-		    <span class="input-group-addon" id="sizing-addon2">Answer</span>
-		    <input type="text" class="form-control" placeholder="" ng-model="cards.answer" ria-describedby="sizing-addon2">
-		  </div>
-		</div> 
-
-
-	 </div>	 -->
+	 
 	 <more-questions index="key" cards="cards" ng-repeat="(key, card) in questions track by key"></more-questions><br>
 
 	 <br>
-	 <a class="btn btn-default btn-md " ng-click="moreQuestions()" role="button">Add Another Question</a>
+	 <a class="btn btn-default btn-md " ng-click="moreQuestions()" role="button">Add Question</a>
 
 	</div>
-	<h1>{{cards}}</h1>
    <p><a class="btn btn-primary btn-lg" href="#/new" ng-click="submitDeck(deck); submitQuestions(cards)" role="button">Create Deck</a></p>
  </form>
 </div>
