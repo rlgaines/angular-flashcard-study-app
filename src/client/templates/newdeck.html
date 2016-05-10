@@ -1,6 +1,7 @@
 <navbar-dir></navbar-dir>
 
 <div class="container">
+  <form novalidate class="simple-form">
 	<div class="jumbotron">
 	  <div class="row">
 	    <h2>Deck Info</h2>
@@ -8,13 +9,13 @@
 	    <div class="col-md-6">
 		  <div class="input-group">
 		    <span class="input-group-addon" id="sizing-addon2">Deck Name</span>
-		    <input type="text" class="form-control" placeholder="" aria-describedby="sizing-addon2">
+		    <input type="text" class="form-control" placeholder="" ng-model="deck.name" aria-describedby="sizing-addon2">
 		  </div>
 		</div> 
 		 <div class="col-md-6">
 		  <div class="input-group">
 		    <span class="input-group-addon" id="sizing-addon2">Deck Image</span>
-		    <input type="text" class="form-control" placeholder="" aria-describedby="sizing-addon2">
+		    <input type="text" class="form-control" placeholder="" ng-model="deck.image" aria-describedby="sizing-addon2">
 		  </div>
 		</div> 
 	  </div>
@@ -23,32 +24,38 @@
  		<div class="col-md-12">
 		  <div class="input-group">
 		    <span class="input-group-addon" id="sizing-addon2">Deck Description</span>
-		    <input type="text" class="form-control" placeholder="" aria-describedby="sizing-addon2">
+		    <input type="text" class="form-control" placeholder="" ng-model="deck.description" aria-describedby="sizing-addon2">
 		  </div>
 		</div>	  
 	  </div>
 	  <br>	  
 	  <hr>
-	 <div class="row"> 
+	 <!-- <div class="row"> 
 	   <h2>Cards</h2>
 	   <br>
+
 	     <div class="col-md-6">
 		  <div class="input-group">
 		    <span class="input-group-addon" id="sizing-addon2">Question</span>
-		    <input type="text" class="form-control" placeholder="" aria-describedby="sizing-addon2">
+		    <input type="text" class="form-control" placeholder="" ng-model="cards.question" aria-describedby="sizing-addon2">
 		  </div>
 		</div> 
 		 <div class="col-md-6">
 		  <div class="input-group">
 		    <span class="input-group-addon" id="sizing-addon2">Answer</span>
-		    <input type="text" class="form-control" placeholder="" aria-describedby="sizing-addon2">
+		    <input type="text" class="form-control" placeholder="" ng-model="cards.answer" ria-describedby="sizing-addon2">
 		  </div>
 		</div> 
-	 </div>	
-	 <div ng-repeat="card in questions track by $index" more-questions="card"><br></div>
+
+
+	 </div>	 -->
+	 <more-questions index="key" cards="cards" ng-repeat="(key, card) in questions track by key"></more-questions><br>
+
 	 <br>
 	 <a class="btn btn-default btn-md " ng-click="moreQuestions()" role="button">Add Another Question</a>
+
 	</div>
-	
+	<h1>{{cards}}</h1>
+   <p><a class="btn btn-primary btn-lg" href="#/new" ng-click="submitDeck(deck); submitQuestions(cards)" role="button">Create Deck</a></p>
+ </form>
 </div>
-		 <p><a class="btn btn-primary btn-lg" href="#" role="button">Create Deck</a></p>

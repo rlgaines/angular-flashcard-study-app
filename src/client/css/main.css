@@ -29,6 +29,9 @@ blockquote{
     
 }
 
+blockquote img{
+    margin-top: 35px;
+}
 
 img{
 	height: 150px;
