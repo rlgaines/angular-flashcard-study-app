@@ -20,7 +20,7 @@
     })
     .when('/new', {
       templateUrl: 'templates/newdeck.html',
-      controller: 'deckController',
+      controller: 'newDeckController',
       // restricted: true,
       // preventLoggedIn: false
     })

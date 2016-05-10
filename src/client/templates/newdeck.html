@@ -45,8 +45,10 @@
 		  </div>
 		</div> 
 	 </div>	
-	 <br><br>
-	 <a class="btn btn-default btn-md " href="#" role="button">Add Another Question</a>
+	 <div ng-repeat="card in questions track by $index" more-questions="card"><br></div>
+	 <br>
+	 <a class="btn btn-default btn-md " ng-click="moreQuestions()" role="button">Add Another Question</a>
 	</div>
+	
 </div>
 		 <p><a class="btn btn-primary btn-lg" href="#" role="button">Create Deck</a></p>
