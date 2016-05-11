@@ -18,6 +18,7 @@
       restricted: true,
       preventLoggedIn: false
     })
+    //needs /:id/ infront
     .when('/new', {
       templateUrl: 'templates/newdeck.html',
       controller: 'newDeckController',
