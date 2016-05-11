@@ -4,12 +4,16 @@
 	angular.module('myApp')
 	  .controller('deckController', deckController);
 
-	deckController.$inject = ['$rootScope', '$scope', 'deckService', '$routeParams'];
+	deckController.$inject = ['$rootScope', '$scope', 'deckService', '$routeParams', 'authService'];
 	
-	function deckController($rootScope, $scope, deckService, $routeParams) {
+	function deckController($rootScope, $scope, deckService, $routeParams, authService) {
 		$scope.decks = {};
-		deckService.getDecks()
+		// $scope.userId = authService.getUserId()
+		// console.log($scope.userId)
+
+		deckService.getDecks($routeParams.id)
 		  .then(function(decks){
+		  	// console.log(decks.data)
 		  	return $scope.flashcards = decks.data
 		  	// decks.data where deck.user_id == AuthService.getUser().id;
 		  })
@@ -20,7 +24,7 @@
 			$scope.deck = {};  
 			deckService.getSingleDeck(data) 
 		  		.then(function(deck){
-		  			console.log('single', deck.data)
+		  			// console.log('single', deck.data)
 		  	 $scope.quiz = deck.data
 		  }) 
 		}

@@ -1,33 +1,59 @@
 var express = require('express');
 var router = express.Router();
+var moment = require('moment');
+var jwt = require('jwt-simple');
 var knex = require('../../../db/knex');
 
 router.post('/login', function(req, res, next){
-	knex.select('*').from('users')
+	knex('users').where('email', req.body.email)
 	.then(function(data){
-		function login(el, index, arr){
-			if (el.email === req.body.email && el.password === req.body.password){
-				console.log('SWAG')
+		console.log(data)
+			if (data.length){
+				delete data[0].password
+				      var token = generateToken(data);
+				      res.status(200).json({
+				        status: 'success',
+				        data: {
+				          token: token,
+				          user: data[0]
+				        }
+				      });		
+			} else {
+				 return res.status(401).json({
+			        status: 'fail',
+			        message: 'Email or Password are incorrect',
+			        requestBody: req.body
+			      });
 			}
-		}
-		data.forEach(login)
-		console.log('USERS:',data)
+		
 	})
-	console.log(req.body)
 })
 
 
 router.post('/register', function(req, res, next){
-	console.log(req.body)
-})
+	knex('users').insert({
+		email:req.body.email,
+		password: req.body.password
+	})
+ .then(function (member) {
+ 	console.log(member)
+      // var token = generateToken(member);
+      // return Promise.resolve({
+      //   token: token,
+      //   data: member
+      // });
+    })})
 
 
 //gets all decks 
-router.get('/decks', function(req, res, next) {
-	console.log('hello');
-	knex.select('*').from('decks')
+router.get('/:id/decks', function(req, res, next) {
+	var id = req.params.id
+	knex.select('decks.name','decks.image','decks.description','decks.id')
+	.from('users')
+	.leftJoin('decks','decks.user_id','users.id')
+	.where('users.id',id)
 	.then(function(data){
-		// console.log(data)
+		console.log(data)
 	   res.send(data);
 
 	})

@@ -39,6 +39,10 @@
         // console.log('here!')
         return $window.localStorage.getItem('user');
       },
+      getUserId: function(userData) {
+        return $window.localStorage.getItem('user');
+
+      }
     };
   }
 

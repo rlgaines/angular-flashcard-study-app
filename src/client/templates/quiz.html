@@ -25,7 +25,8 @@
 
         <div ng-hide="!togglepost">
         <hr>
-        	<h3>Answer: {{info.answer}}</h3>
+          <h2>Answer:</h2>
+        	<h4>{{info.answer}}</h4>
         </div>  
         <br>
         <p><a ng-click="togglepost = !togglepost" ng-hide="togglepost" class="btn btn-primary" role="button">Check Answer</a><a class="btn btn-default" ng-hide="!togglepost" ng-click="togglepost = !togglepost" role="button">Hide Answer</a></p>

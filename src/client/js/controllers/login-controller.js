@@ -12,8 +12,9 @@
     $scope.login = function() {
       authService.login($scope.user)
         .then(function(user) {
+          user.id = user.data.data.user.id
           authService.setUserInfo(user);
-          $location.path('/decks');
+          $location.path('/'+user.id+'/decks');
           $rootScope.currentUser = authService.getUserInfo();
         })
         .catch(function(err) {

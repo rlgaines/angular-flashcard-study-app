@@ -11,9 +11,8 @@
   function deckService($http, $window) {
     var user = {};
     return {
-      getDecks: function() {
-        // console.log('user')
-        return $http.get('/decks');
+      getDecks: function(id) {
+        return $http.get('/'+ id+'/decks');
       },
 
       getSingleDeck: function(id){

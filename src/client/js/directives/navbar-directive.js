@@ -10,12 +10,12 @@
      restrict: 'EA',
      template: `          
     <nav class="navbar navbar-default">
-      <a href="#/decks"><button type="button" class="btn btn-default navbar-btn">Home</button></a>
+      <a href="#/{{userId}}/decks"><button type="button" class="btn btn-default navbar-btn">Home</button></a>
       <a href="#/logout"><button type="button" class="btn btn-default navbar-btn">Sign Out</button></a>
 
     </nav>   `,
-    transclude: true
-   }
+     controller: 'deckController'
+        }
 
 
    return directive;

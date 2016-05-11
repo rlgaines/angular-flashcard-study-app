@@ -12,7 +12,7 @@
 
   function appConfig($routeProvider, $httpProvider) {
     $routeProvider
-    .when('/decks', {
+    .when('/:id/decks', {
       templateUrl: 'templates/main.html',
       controller: 'deckController',
       restricted: true,
