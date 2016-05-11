@@ -4,10 +4,10 @@
 
   angular.module('myApp')
     .config(appConfig)
-    // .run(routeChange);
+    .run(routeChange);
 
   appConfig.$inject = ['$routeProvider', '$httpProvider'];
-  // routeChange.$inject = ['$rootScope', '$location', '$window'];
+  routeChange.$inject = ['$rootScope', '$location', '$window'];
 
 
   function appConfig($routeProvider, $httpProvider) {
@@ -15,20 +15,20 @@
     .when('/decks', {
       templateUrl: 'templates/main.html',
       controller: 'deckController',
-      // restricted: true,
-      // preventLoggedIn: false
+      restricted: true,
+      preventLoggedIn: false
     })
     .when('/new', {
       templateUrl: 'templates/newdeck.html',
       controller: 'newDeckController',
-      // restricted: true,
-      // preventLoggedIn: false
+      restricted: true,
+      preventLoggedIn: false
     })
     .when('/:id/quiz', {
       templateUrl: 'templates/quiz.html',
       controller: 'deckController',
-      // restricted: true,
-      // preventLoggedIn: false
+      restricted: true,
+      preventLoggedIn: false
     })
     .when('/register',{
       templateUrl: 'templates/register.html',
@@ -57,17 +57,17 @@
     // $httpProvider.interceptors.push('authInterceptor');
   }
 
-  // function routeChange($rootScope, $location, $window, authService) {
-  //   $rootScope.$on('$routeChangeStart', function(event, next, current) {
-  //     // if route us restricted and no token is present
-  //     if(next.restricted && !$window.localStorage.getItem('token')) {
-  //       $location.path('/login');
-  //     }
-  //     // if token and prevent logging in is true
-  //     if(next.preventLoggedIn && $window.localStorage.getItem('token')) {
-  //       $location.path('/');
-  //     }
-  //   });
-  // }
+  function routeChange($rootScope, $location, $window, authService) {
+    $rootScope.$on('$routeChangeStart', function(event, next, current) {
+      // if route us restricted and no token is present
+      if(next.restricted && !$window.localStorage.getItem('token')) {
+        $location.path('/login');
+      }
+      // if token and prevent logging in is true
+      if(next.preventLoggedIn && $window.localStorage.getItem('token')) {
+        $location.path('/');
+      }
+    });
+  }
 
 })();
