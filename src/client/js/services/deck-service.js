@@ -12,11 +12,17 @@
     var user = {};
     return {
       getDecks: function(id) {
-        return $http.get('/'+ id+'/decks');
+        var id = id
+      return $http.get('/'+ id+'/decks')
       },
 
       getSingleDeck: function(id){
-        return $http.get('/'+id +'/quiz');
+        return $http.get('/'+id+'/quiz');
+      },
+
+      addRecommendedDeck: function(data, id){
+        return $http.post('/'+ id +'/new', data)
+
       }
     };
   }

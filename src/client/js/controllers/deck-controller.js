@@ -8,31 +8,50 @@
 	
 	function deckController($rootScope, $scope, deckService, $routeParams, authService) {
 		$scope.decks = {};
-		// $scope.userId = authService.getUserId()
-		// console.log($scope.userId)
+		$scope.recommendedQuiz = [];
+		$scope.userId = authService.getUserId()
+		// console.log('user',$scope.userId)
 
-		deckService.getDecks($routeParams.id)
-		  .then(function(decks){
-		  	// console.log(decks.data)
-		  	return $scope.flashcards = decks.data
-		  	// decks.data where deck.user_id == AuthService.getUser().id;
-		  })
+		deckService.getDecks($scope.userId)
+           .then(function(data){
+            	var notIncluded = [];
+            	var included = [];
+	            function checkId(el){
+	              if (el.user_id != $scope.userId){
+	                  notIncluded.push(el)
+	                } else {
+	                  included.push(el)
+	                }
+	              }
+	          	data.data.forEach(checkId)
+	             $scope.notIncluded = notIncluded;
+	             $scope.included = included;
+      		})
 
 
 
-		$scope.pullDeck = function(data) {
-			$scope.deck = {};  
-			deckService.getSingleDeck(data) 
-		  		.then(function(deck){
-		  			// console.log('single', deck.data)
-		  	 $scope.quiz = deck.data
-		  }) 
-		}
+			$scope.pullDeck = function(data) {
+				$scope.deck = {};  
+				$scope.singleDeck = [];
+				deckService.getSingleDeck(data) 
+			  		.then(function(deck){
+			  	 $scope.quiz = deck.data
+			  	 // console.log(deck.data[0])
+			  	 $scope.singleDeck.push(deck.data[0])
+			  }) 
+			}
 
-		if($routeParams.id){
-		$scope.pullDeck($routeParams.id);
-		}	
+			if($routeParams.id){
+				$scope.pullDeck($routeParams.id);
+				}	
 
+
+
+
+			$scope.addRecommendedDeck = function(data){
+				// console.log('NEW:',data)
+				deckService.addRecommendedDeck(data, $scope.userId)
+			}	
 	}  
 })();
 

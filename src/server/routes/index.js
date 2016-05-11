@@ -4,6 +4,7 @@ var moment = require('moment');
 var jwt = require('jwt-simple');
 var knex = require('../../../db/knex');
 
+//checks user if they are in database, logs them in with token
 router.post('/login', function(req, res, next){
 	knex('users').where('email', req.body.email)
 	.then(function(data){
@@ -15,7 +16,7 @@ router.post('/login', function(req, res, next){
 				        status: 'success',
 				        data: {
 				          token: token,
-				          user: data[0]
+				          user: data[0].id
 				        }
 				      });		
 			} else {
@@ -45,40 +46,47 @@ router.post('/register', function(req, res, next){
     // })
 })
 
-
 //gets all decks 
 router.get('/:id/decks', function(req, res, next) {
 	var id = req.params.id
-	knex.select('decks.name','decks.image','decks.description','decks.id')
-	.from('users')
-	.leftJoin('decks','decks.user_id','users.id')
-	.where('users.id',id)
+	knex.select('*')
+	.from('decks')
 	.then(function(data){
-		console.log(data)
+		// console.log(data)
 	   res.send(data);
 
 	})
 });
 
-//gets all decks 
+//gets deck for quiz 
 router.get('/:id/quiz', function(req, res, next) {
-	console.log('hello');	
 	var id = req.params.id	
 	knex.select('decks.name', 'decks.image', 'decks.description', 'cards.question', 'cards.answer')
 	.from('decks')
 	.leftJoin('cards','cards.deck_id','decks.id')
 	.where('decks.id',id)
 	.then(function(data){
-		console.log(data)
+		// console.log(data)
 	   res.send(data);
 
 	})
 });
 
 //post for new deck in database
-router.post('/new', function(req, res, next) {
+router.post('/:id/new', function(req, res, next) {
 	console.log(req.body)
 })
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -94,4 +102,38 @@ function generateToken(user) {
   };
   return jwt.encode(payload, '\x07q\xa1\xb0\xa0\xa7x\xda\xb2\xa9+g|\xd5\x9d\xd9\x9f\x12\xc4-I\x12Q\xfc');
 }
+
+function ensureAuthenticated(req, res, next) {
+  // check headers for the presence of an auth object
+  if(!(req.headers && req.headers.authorization)) {
+    return res.status(400).json({
+      status: 'fail',
+      message: 'No header present or no authorization header.'
+    });
+  }
+  // decode the token
+  var header = req.headers.authorization.split(' ');
+  var token = header[1];
+  var payload = jwt.decode(token, '\x07q\xa1\xb0\xa0\xa7x\xda\xb2\xa9+g|\xd5\x9d\xd9\x9f\x12\xc4-I\x12Q\xfc');
+  var now = moment().unix();
+  // ensure that it is valid
+  if(now > payload.exp || payload.iat > now || user.role != 'admin') {
+    return res.status(401).json({
+      status: 'fail',
+      message: 'Token is invalid'
+    });
+  }
+  // ensure user is still in the database
+  knex('users')
+    .where('id', payload.sub)
+    .first()
+    .then(function(user) {
+      // if in database, let them access the route
+      next();
+    })
+    .catch(function(err) {
+      return next(err);
+    });
+}
+
 module.exports = router;

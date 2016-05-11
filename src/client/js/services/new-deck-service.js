@@ -12,13 +12,13 @@
     var data = {};
     return {
 
-      newDeck: function(data) {
-        return $http.post('/new', data);
+      newDeck: function(data, id) {
+        return $http.post('/'+ id +'/new', data);
         console.log('service:',data)
       },
 
-      moreQuestions: function(data) {
-        return $http.post('/new', data)
+      moreQuestions: function(data, id) {
+        return $http.post('/'+ id +'/new', data)
         console.log('service:',data)
       }
     };

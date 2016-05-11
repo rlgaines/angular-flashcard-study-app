@@ -19,9 +19,15 @@
       preventLoggedIn: false
     })
     //needs /:id/ infront
-    .when('/new', {
+    .when('/:id/new', {
       templateUrl: 'templates/newdeck.html',
       controller: 'newDeckController',
+      restricted: true,
+      preventLoggedIn: false
+    })
+     .when('/:id/add', {
+      templateUrl: 'templates/addQuiz.html',
+      controller: 'deckController',
       restricted: true,
       preventLoggedIn: false
     })
