@@ -92,11 +92,25 @@ router.post('/:id/add', function(req, res, next){
 	})
 	.returning('id')
 	.then(function(deckId){
-		console.log(deckId)
+		cardsArray = req.body
+		cardsArray.forEach(function(card){
+			card.deck_id = deckId
+			return promises = cardsArray.map(function(card){
+				return knex('cards').insert({
+					deck_id: card.deck_id,
+					question: card.question,
+					answer: card.answer
+				})
+			})
+		})
+		return Promise.all(promises)
+	})
+	.then(function(){
+		res.send
 	})
 	.catch(function(error) {
     console.error(error);
-  });
+  })
 	// [knex deck insert statement]
 	// .returning('id')
 	// .then(function (deckId) {
