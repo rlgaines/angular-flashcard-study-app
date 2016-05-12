@@ -16,21 +16,29 @@
            .then(function(data){
             	var notIncluded = [];
             	var included = [];
+            	var names = [];
+
 	            function checkId(el){
 	              if (el.user_id != $scope.userId){
 	                  notIncluded.push(el)
+	                  names.push(el.name)
 	                } else {
 	                  included.push(el)
 	                }
 	              }
 	          	data.data.forEach(checkId)
+	          	$scope.notIncluded = notIncluded.filter(function(deck){
+	          		if (names.indexOf(deck.name) !== -1 ){
+	          			return deck.name
+	          		}
+	          	})
 	          	// return an array of names from included
 	          	// var names = ["CSS", "HTML 5"];
 	          	// notIncluded = notIncluded.filter(function (deck) {
 	          		// check deck name isn't inside of included
 	          		// names.indexOf(deck.name) !== -1
 	          	// });
-	             $scope.notIncluded = notIncluded;
+	             // $scope.notIncluded = notIncluded;
 	             $scope.included = included;
       		})
 

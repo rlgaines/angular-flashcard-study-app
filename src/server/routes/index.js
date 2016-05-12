@@ -3,12 +3,13 @@ var router = express.Router();
 var moment = require('moment');
 var jwt = require('jwt-simple');
 var knex = require('../../../db/knex');
+var pg = require('pg');
 
 //checks user if they are in database, logs them in with token
 router.post('/login', function(req, res, next){
 	knex('users').where('email', req.body.email)
 	.then(function(data){
-		console.log(data)
+		// console.log(data)
 			if (data.length){
 				delete data[0].password
 				      var token = generateToken(data);
@@ -74,14 +75,28 @@ router.get('/:id/quiz', function(req, res, next) {
 
 //post for new deck in database
 router.post('/:id/new', function(req, res, next) {
-	console.log(req.body)
+	// console.log('NEW',req.body)
 })
 
 
 
 router.post('/:id/add', function(req, res, next){
-	console.log(req.body)
+	// console.log("ID:", req.params.id, "ADD:", req.body)
 
+
+	knex('decks').insert({
+		user_id: req.params.id,
+		name: req.body[0].name,
+		description: req.body[0].description,
+		image: req.body[0].image
+	})
+	.returning('id')
+	.then(function(deckId){
+		console.log(deckId)
+	})
+	.catch(function(error) {
+    console.error(error);
+  });
 	// [knex deck insert statement]
 	// .returning('id')
 	// .then(function (deckId) {

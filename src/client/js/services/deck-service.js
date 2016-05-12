@@ -21,7 +21,7 @@
       },
 
       addRecommendedDeck: function(data, id){
-        return $http.post('/'+ id +'/new', data)
+        return $http.post('/'+ id +'/add', data)
 
       }
     };
