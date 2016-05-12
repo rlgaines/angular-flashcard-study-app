@@ -12,15 +12,15 @@
     var data = {};
     return {
 
-      newDeck: function(data, id) {
-        return $http.post('/'+ id +'/new', data);
+      newDeck: function(data, cards, id) {
+        return $http.post('/'+ id +'/new', data, cards);
         console.log('service:',data)
       },
 
-      moreQuestions: function(data, id) {
-        return $http.post('/'+ id +'/new', data)
-        console.log('service:',data)
-      }
+      // moreQuestions: function(data, id) {
+      //   return $http.post('/'+ id +'/new', data)
+      //   console.log('service:',data)
+      // }
     };
   }
 

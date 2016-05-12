@@ -75,14 +75,43 @@ router.get('/:id/quiz', function(req, res, next) {
 
 //post for new deck in database
 router.post('/:id/new', function(req, res, next) {
-	// console.log('NEW',req.body)
+	console.log('NEW',req.body, 'ID:', req.params.id)
+	knex('decks').insert({
+			user_id: req.params.id,
+			name: req.body[0].name,
+			description: req.body[0].description,
+			image: req.body[0].image
+		})
+		.returning('id')
+		.then(function(deckId){
+			cardsArray = req.body
+			cardsArray.forEach(function(card){
+				card.deck_id = deckId
+			})
+			var promises = cardsArray.map(function(newCard){
+					console.log(newCard)
+					return knex('cards').insert({
+						deck_id: newCard.deck_id,
+						question: newCard.question,
+						answer: newCard.answer
+					})
+				})
+			return Promise.all(promises)
+		})
+		.then(function(){
+			res.send
+		})
+		.catch(function(error) {
+	    console.error(error);
+	  })
+
+
 })
 
 
 
 router.post('/:id/add', function(req, res, next){
 	// console.log("ID:", req.params.id, "ADD:", req.body)
-
 
 	knex('decks').insert({
 		user_id: req.params.id,
@@ -95,14 +124,15 @@ router.post('/:id/add', function(req, res, next){
 		cardsArray = req.body
 		cardsArray.forEach(function(card){
 			card.deck_id = deckId
-			return promises = cardsArray.map(function(card){
+		})
+		var promises = cardsArray.map(function(newCard){
+				console.log(newCard)
 				return knex('cards').insert({
-					deck_id: card.deck_id,
-					question: card.question,
-					answer: card.answer
+					deck_id: newCard.deck_id[0],
+					question: newCard.question,
+					answer: newCard.answer
 				})
 			})
-		})
 		return Promise.all(promises)
 	})
 	.then(function(){
@@ -135,16 +165,6 @@ router.post('/:id/add', function(req, res, next){
 	// 	// res send
 	// })
 })
-
-
-
-
-
-
-
-
-
-
 
 
 

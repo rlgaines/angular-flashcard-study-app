@@ -13,11 +13,14 @@
 			$scope.questions.push('')
 
 		}
-		$scope.submitDeck = function(data){
-			return newDeckService.newDeck(data, $routeParams.id)
+		$scope.submitDeck = function(data, cards){
+			console.log(data, cards)
+			var newArray = [];
+			newArray.push(data, cards)
+			return newDeckService.newDeck(newArray, $routeParams.id)
 		}
-		$scope.submitQuestions = function(data){
-			return newDeckService.moreQuestions(data, $routeParams.id)
-		}
+		// $scope.submitQuestions = function(data){
+		// 	return newDeckService.moreQuestions(data, $routeParams.id)
+		// }
 	}  
 })();
