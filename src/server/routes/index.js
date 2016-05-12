@@ -84,22 +84,22 @@ router.post('/:id/new', function(req, res, next) {
 		})
 		.returning('id')
 		.then(function(deckId){
-			cardsArray = req.body
+			cardsArray = req.body[1]
 			cardsArray.forEach(function(card){
-				card.deck_id = deckId
+				 card.deck_id = deckId[0]
 			})
 			var promises = cardsArray.map(function(newCard){
-					console.log(newCard)
+					console.log('MAP',newCard)
 					return knex('cards').insert({
 						deck_id: newCard.deck_id,
 						question: newCard.question,
 						answer: newCard.answer
 					})
 				})
-			return Promise.all(promises)
-		})
-		.then(function(){
-			res.send
+			Promise.all(promises).then(function(){
+					res.json('success');
+				})
+
 		})
 		.catch(function(error) {
 	    console.error(error);
@@ -111,7 +111,7 @@ router.post('/:id/new', function(req, res, next) {
 
 
 router.post('/:id/add', function(req, res, next){
-	// console.log("ID:", req.params.id, "ADD:", req.body)
+	console.log("ID:", req.params.id, "ADD:", req.body)
 
 	knex('decks').insert({
 		user_id: req.params.id,

@@ -14,13 +14,13 @@
 
 		}
 		$scope.submitDeck = function(data, cards){
-			console.log(data, cards)
+			console.log('PARAMS:', $routeParams)
 			var newArray = [];
 			newArray.push(data, cards)
-			return newDeckService.newDeck(newArray, $routeParams.id)
+			newDeckService.newDeck(newArray, $routeParams.id).then(function(data){
+				console.log('success', data)
+			})
 		}
-		// $scope.submitQuestions = function(data){
-		// 	return newDeckService.moreQuestions(data, $routeParams.id)
-		// }
+		
 	}  
 })();
