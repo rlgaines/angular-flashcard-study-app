@@ -12,12 +12,15 @@
 		$scope.userId = authService.getUserId()
 		// console.log('user',$scope.userId)
 
+
+		//gets all decks 
 		deckService.getDecks($scope.userId)
            .then(function(data){
             	var notIncluded = [];
             	var included = [];
             	var names = [];
-
+	            	
+	            //checks ID to split decks by ID
 	            function checkId(el){
 	              if (el.user_id != $scope.userId){
 	                  notIncluded.push(el)
@@ -27,23 +30,13 @@
 	                }
 	              }
 	          	data.data.forEach(checkId)
-	          	$scope.notIncluded = notIncluded.filter(function(deck){
-	          		if (names.indexOf(deck.name) !== -1 ){
-	          			return deck.name
-	          		}
-	          	})
-	          	// return an array of names from included
-	          	// var names = ["CSS", "HTML 5"];
-	          	// notIncluded = notIncluded.filter(function (deck) {
-	          		// check deck name isn't inside of included
-	          		// names.indexOf(deck.name) !== -1
-	          	// });
-	             // $scope.notIncluded = notIncluded;
+	          
+	             $scope.notIncluded = notIncluded;
 	             $scope.included = included;
       		})
 
 
-
+           //pulls deck for user who does not have that deck yet 
 			$scope.pullDeck = function(data) {
 				$scope.deck = {};  
 				$scope.singleDeck = [];
@@ -61,7 +54,7 @@
 
 
 
-
+			//duplicates deck user wants to add to deck
 			$scope.addRecommendedDeck = function(data){
 				// console.log('NEW:',data)
 				deckService.addRecommendedDeck($scope.quiz, $scope.userId)

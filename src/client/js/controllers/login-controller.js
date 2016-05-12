@@ -7,6 +7,8 @@
 
   loginController.$inject = ['$rootScope', '$scope', '$location', 'authService'];
 
+
+//checks user is in DB and sets token for login
   function loginController($rootScope, $scope, $location, authService) {
     $scope.user = {};
     $scope.login = function() {

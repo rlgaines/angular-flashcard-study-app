@@ -5,6 +5,7 @@
    .module('myApp')
    .directive('navbarDir', navbarDir)
 
+//nav bar directive
  function navbarDir(){
    var directive = {
      restrict: 'EA',
