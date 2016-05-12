@@ -24,6 +24,12 @@
 	                }
 	              }
 	          	data.data.forEach(checkId)
+	          	// return an array of names from included
+	          	// var names = ["CSS", "HTML 5"];
+	          	// notIncluded = notIncluded.filter(function (deck) {
+	          		// check deck name isn't inside of included
+	          		// names.indexOf(deck.name) !== -1
+	          	// });
 	             $scope.notIncluded = notIncluded;
 	             $scope.included = included;
       		})
@@ -50,7 +56,7 @@
 
 			$scope.addRecommendedDeck = function(data){
 				// console.log('NEW:',data)
-				deckService.addRecommendedDeck(data, $scope.userId)
+				deckService.addRecommendedDeck($scope.quiz, $scope.userId)
 			}	
 	}  
 })();

@@ -79,7 +79,33 @@ router.post('/:id/new', function(req, res, next) {
 
 
 
+router.post('/:id/add', function(req, res, next){
+	console.log(req.body)
 
+	// [knex deck insert statement]
+	// .returning('id')
+	// .then(function (deckId) {
+ //      cardsArray = [{ ... }, { ... }]
+
+ //      // add the deckID to each card
+ //      cardsArray.forEach(function (card) {
+ //        card.deck_id = deckID;
+ //      })
+    
+ //      // create an array of knex insert promises per card
+ //      var promises = cardsArray.map(function (card) {
+ //      	return knex('cards').insert ...
+ //      })
+
+ //      // promises is an array of promises, each of which
+ //      // inserts a new card with the above deck id
+
+ //      return Promise.all(promises);
+	// })
+	// .then(function () {
+	// 	// res send
+	// })
+})
 
 
 
