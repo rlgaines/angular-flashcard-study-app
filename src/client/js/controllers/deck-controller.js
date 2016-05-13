@@ -10,7 +10,7 @@
 		$scope.decks = {};
 		$scope.recommendedQuiz = [];
 		$scope.userId = authService.getUserId()
-		// console.log('user',$scope.userId)
+		console.log('user',$scope.userId)
 
 
 		//gets all decks 

@@ -6,6 +6,7 @@
 
 	newDeckController.$inject = ['$rootScope', '$scope', '$location', 'newDeckService', '$routeParams'];
 	
+	//new deck creater
 	function newDeckController($rootScope, $scope, $location, newDeckService, $routeParams) {
 		$scope.questions = [];
 		$scope.cards = [];

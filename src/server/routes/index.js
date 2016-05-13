@@ -37,14 +37,14 @@ router.post('/register', function(req, res, next){
 		email:req.body.email,
 		password: req.body.password
 	})
- // .then(function (member) {
- // 	console.log(member)
-      // var token = generateToken(member);
-      // return Promise.resolve({
-      //   token: token,
-      //   data: member
-      // });
-    // })
+ .then(function (member) {
+ 	console.log(member)
+      var token = generateToken(member);
+      return Promise.resolve({
+        token: token,
+        data: member
+      });
+    })
 })
 
 //gets all decks 
