@@ -10,7 +10,7 @@
 		$scope.decks = {};
 		$scope.recommendedQuiz = [];
 		$scope.userId = authService.getUserId()
-		console.log('user',$scope.userId)
+		// console.log('user',$scope.userId)
 
 
 		//gets all decks 
@@ -22,6 +22,7 @@
 	            	
 	            //checks ID to split decks by ID
 	            function checkId(el){
+	            	console.log()
 	              if (el.user_id != $scope.userId){
 	                  notIncluded.push(el)
 	                  names.push(el.name)
@@ -30,7 +31,6 @@
 	                }
 	              }
 	          	data.data.forEach(checkId)
-	          
 	             $scope.notIncluded = notIncluded;
 	             $scope.included = included;
       		})

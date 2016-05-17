@@ -27,12 +27,11 @@
         $window.localStorage.clear();
       },
       register: function(user) {
-        // console.log('User Info:', user)
         return $http.post('/register', user);
       },
       setUserInfo: function(userData) {
-        // console.log('user data:',userData)
-        $window.localStorage.setItem('user', JSON.stringify(userData.data.data.user));
+        console.log('user data:',userData)
+        $window.localStorage.setItem('user', JSON.stringify(userData.data.data.id));
         $window.localStorage.setItem('token', JSON.stringify(userData.data.data.token));
       },
       getUserInfo: function(userData) {

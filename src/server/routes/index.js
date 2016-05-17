@@ -31,18 +31,19 @@ router.post('/login', function(req, res, next){
 	})
 })
 
-
+//register new user gives token
 router.post('/register', function(req, res, next){
 	knex('users').insert({
 		email:req.body.email,
 		password: req.body.password
-	})
+	}).returning('*')
  .then(function (member) {
  	console.log(member)
-      var token = generateToken(member);
-      return Promise.resolve({
+      var token = generateToken(member[0].email);
+      console.log(token)
+      return res.json({
         token: token,
-        data: member
+        data: member[0]
       });
     })
 })
