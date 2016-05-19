@@ -13,6 +13,7 @@ router.post('/login', function(req, res, next){
 			if (data.length){
 				delete data[0].password
 				      var token = generateToken(data);
+				      // console.log(data)
 				      res.status(200).json({
 				        status: 'success',
 				        data: {
@@ -40,10 +41,10 @@ router.post('/register', function(req, res, next){
  .then(function (member) {
  	console.log(member)
       var token = generateToken(member[0].email);
-      console.log(token)
+      console.log(member)
       return res.json({
         token: token,
-        data: member[0]
+        data: member[0].id
       });
     })
 })
@@ -63,15 +64,18 @@ router.get('/:id/decks', function(req, res, next) {
 //gets deck for quiz 
 router.get('/:id/quiz', function(req, res, next) {
 	var id = req.params.id	
-	knex.select('decks.name', 'decks.image', 'decks.description', 'cards.question', 'cards.answer')
-	.from('decks')
-	.leftJoin('cards','cards.deck_id','decks.id')
-	.where('decks.id',id)
-	.then(function(data){
-		// console.log(data)
-	   res.send(data);
+	console.log('id:'+id)
+	if(Number.isInteger(id)){
+		knex.select('decks.name', 'decks.image', 'decks.description', 'cards.question', 'cards.answer')
+		.from('decks')
+		.leftJoin('cards','cards.deck_id','decks.id')
+		.where('decks.id',id)
+		.then(function(data){
+			console.log(data)
+		   res.send(data);
 
-	})
+		})
+    }
 });
 
 //post for new deck in database

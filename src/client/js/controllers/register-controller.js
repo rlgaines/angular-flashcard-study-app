@@ -13,9 +13,9 @@
       console.log($scope.user)
       authService.register($scope.user)
         .then(function(user) {
-          console.log(user)
-          user.id = user.data.data.id
-          authService.setUserInfo(user);
+          console.log('Reg Con:', user)
+          user.id = user.data.data
+          authService.setUserInfoReg(user);
           $location.path('/'+user.id+'/decks');
           $rootScope.currentUser = authService.getUserInfo();
         })

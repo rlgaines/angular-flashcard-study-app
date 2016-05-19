@@ -10,7 +10,7 @@
 		$scope.decks = {};
 		$scope.recommendedQuiz = [];
 		$scope.userId = authService.getUserId()
-		// console.log('user',$scope.userId)
+		console.log('user',$scope.userId)
 
 
 		//gets all decks 
@@ -22,7 +22,6 @@
 	            	
 	            //checks ID to split decks by ID
 	            function checkId(el){
-	            	console.log()
 	              if (el.user_id != $scope.userId){
 	                  notIncluded.push(el)
 	                  names.push(el.name)
@@ -40,17 +39,20 @@
 			$scope.pullDeck = function(data) {
 				$scope.deck = {};  
 				$scope.singleDeck = [];
-				deckService.getSingleDeck(data) 
-			  		.then(function(deck){
-			  	 $scope.quiz = deck.data
-			  	 // console.log(deck.data[0])
-			  	 $scope.singleDeck.push(deck.data[0])
-			  }) 
+				deckService.paused(data)
+				.then(function(info){
+					deckService.getSingleDeck(info) 
+				  	.then(function(deck){
+						 $scope.quiz = deck.data
+						  	 // console.log(deck.data[0])
+						  $scope.singleDeck.push(deck.data[0])
+						  console.log('WORK',$scope.singleDeck)
+					}) 
+				})
 			}
-
 			if($routeParams.id){
 				$scope.pullDeck($routeParams.id);
-				}	
+			}	
 
 
 

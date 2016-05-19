@@ -14,6 +14,7 @@
     $scope.login = function() {
       authService.login($scope.user)
         .then(function(user) {
+          console.log("Login Con:", user)
           user.id = user.data.data.user
           authService.setUserInfo(user);
           $location.path('/'+user.id+'/decks');

@@ -19,7 +19,7 @@
     var user = {};
     return {
       login: function(user) {
-        // console.log('user',user)
+        // console.log('user Serv:',user)
         return $http.post('/login', user);
       },
       logout: function(user) {
@@ -27,11 +27,17 @@
         $window.localStorage.clear();
       },
       register: function(user) {
+        console.log('user serv:', user)
         return $http.post('/register', user);
       },
       setUserInfo: function(userData) {
-        console.log('user data:',userData)
-        $window.localStorage.setItem('user', JSON.stringify(userData.data.data.id));
+        console.log('user data LOGIN:',userData)
+        $window.localStorage.setItem('user', JSON.stringify(userData.data.data.user));
+        $window.localStorage.setItem('token', JSON.stringify(userData.data.data.token));
+      },
+       setUserInfoReg: function(userData) {
+        console.log('user data REG:',userData)
+        $window.localStorage.setItem('user', JSON.stringify(userData.id));
         $window.localStorage.setItem('token', JSON.stringify(userData.data.data.token));
       },
       getUserInfo: function(userData) {
@@ -39,6 +45,7 @@
         return $window.localStorage.getItem('user');
       },
       getUserId: function(userData) {
+
         return $window.localStorage.getItem('user');
 
       }
