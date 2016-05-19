@@ -9,18 +9,20 @@
   deckService.$inject = ['$http', '$window'];
 
   function deckService($http, $window) {
-    var user = {};
+    var currentID = {};
+
     return {
       getDecks: function(id) {
         var id = id
       return $http.get('/'+ id +'/decks')
       },
       paused: function(data){
-          return new Promise(function(res){
-            res(data.id)
-          })
-
+            currentID = data       
        },
+       getID: function(){
+        return currentID
+       },
+
       getSingleDeck: function(id){
         // console.log('id:', id)
         return $http.get('/'+id+'/quiz');

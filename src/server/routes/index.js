@@ -65,7 +65,7 @@ router.get('/:id/decks', function(req, res, next) {
 router.get('/:id/quiz', function(req, res, next) {
 	var id = req.params.id	
 	console.log('id:'+id)
-	if(Number.isInteger(id)){
+	// if(Number.isInteger(id)){
 		knex.select('decks.name', 'decks.image', 'decks.description', 'cards.question', 'cards.answer')
 		.from('decks')
 		.leftJoin('cards','cards.deck_id','decks.id')
@@ -75,7 +75,7 @@ router.get('/:id/quiz', function(req, res, next) {
 		   res.send(data);
 
 		})
-    }
+    // }
 });
 
 //post for new deck in database

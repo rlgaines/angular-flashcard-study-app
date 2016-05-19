@@ -10,7 +10,7 @@
 		$scope.decks = {};
 		$scope.recommendedQuiz = [];
 		$scope.userId = authService.getUserId()
-		console.log('user',$scope.userId)
+		// console.log('user',$scope.userId)
 
 
 		//gets all decks 
@@ -37,22 +37,20 @@
 
            //pulls deck for user who does not have that deck yet 
 			$scope.pullDeck = function(data) {
-				$scope.deck = {};  
+				// console.log(data)
+				$scope.deck = {}; 
 				$scope.singleDeck = [];
-				deckService.paused(data)
-				.then(function(info){
-					deckService.getSingleDeck(info) 
+					deckService.getSingleDeck(data.id) 
 				  	.then(function(deck){
-						 $scope.quiz = deck.data
-						  	 // console.log(deck.data[0])
-						  $scope.singleDeck.push(deck.data[0])
-						  console.log('WORK',$scope.singleDeck)
+				  		console.log(deck)
+						$scope.quiz = deck.data
+						$scope.singleDeck.push(deck.data[0])
+						// console.log('WORK',$scope.singleDeck)
 					}) 
-				})
 			}
-			if($routeParams.id){
-				$scope.pullDeck($routeParams.id);
-			}	
+			// if($routeParams.id){
+			// 	$scope.pullDeck($routeParams.id);
+			// }	
 
 
 

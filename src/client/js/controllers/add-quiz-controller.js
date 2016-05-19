@@ -4,16 +4,19 @@
 	angular.module('myApp')
 	  .controller('addQuiz', addQuiz);
 
-	addQuiz.$inject = ['$rootScope', '$scope', '$location', 'deckService','addQuizService', '$routeParams'];
+	addQuiz.$inject = ['$rootScope', '$scope', '$location', 'deckService', '$routeParams'];
 	
 	//will add a new quiz/deck to your page for quizing from recommended directive
-	function addQuiz($rootScope, $scope, $location, deckService, addQuizService, $routeParams) {
-		$scope.pullDeck = function(data) {
-			$scope.deck = {};  
-			deckService.getSingleDeck(data) 
-		  		.then(function(deck){
-		  	 $scope.quiz = deck.data
-		  }) 
-		}
+	function addQuiz($rootScope, $scope, $location, deckService, $routeParams) {
+
+		$scope.pullDeckAddQuiz = function(data) {
+			console.log('Data',data)
+			deckService.paused(data.id) 
+		  }
+		
+		$scope.pullDeckAddQuiz(deckService.getID());
+		
 	}  
+
+
 })();

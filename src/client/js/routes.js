@@ -27,7 +27,7 @@
     })
      .when('/:id/add', {
       templateUrl: 'templates/addQuiz.html',
-      controller: 'deckController',
+      controller: 'addQuiz',
       restricted: true,
       preventLoggedIn: false
     })
