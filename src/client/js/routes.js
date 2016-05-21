@@ -33,7 +33,7 @@
     })
     .when('/:id/quiz', {
       templateUrl: 'templates/quiz.html',
-      controller: 'deckController',
+      controller: 'quizController',
       restricted: true,
       preventLoggedIn: false
     })

@@ -35,30 +35,30 @@
       		})
 
 
-           //pulls deck for user who does not have that deck yet 
-			$scope.pullDeck = function(data) {
-				// console.log(data)
-				$scope.deck = {}; 
-				$scope.singleDeck = [];
-					deckService.getSingleDeck(data.id) 
-				  	.then(function(deck){
-				  		console.log(deck)
-						$scope.quiz = deck.data
-						$scope.singleDeck.push(deck.data[0])
-						// console.log('WORK',$scope.singleDeck)
-					}) 
-			}
+   //         //pulls deck for user who does not have that deck yet 
+			// $scope.pullDeck = function(data) {
+			// 	// console.log(data)
+			// 	$scope.deck = {}; 
+			// 	$scope.singleDeck = [];
+			// 		deckService.getSingleDeck(data.id) 
+			// 	  	.then(function(deck){
+			// 	  		console.log(deck)
+			// 			$scope.quiz = deck.data
+			// 			$scope.singleDeck.push(deck.data[0])
+			// 			// console.log('WORK',$scope.singleDeck)
+			// 		}) 
+			// }
 			// if($routeParams.id){
 			// 	$scope.pullDeck($routeParams.id);
 			// }	
 
 
 
-			//duplicates deck user wants to add to deck
-			$scope.addRecommendedDeck = function(data){
-				// console.log('NEW:',data)
-				deckService.addRecommendedDeck($scope.quiz, $scope.userId)
-			}	
+			// //duplicates deck user wants to add to deck
+			// $scope.addRecommendedDeck = function(data){
+			// 	// console.log('NEW:',data)
+			// 	deckService.addRecommendedDeck($scope.quiz, $scope.userId)
+			// }	
 	}  
 })();
 

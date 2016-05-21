@@ -17,7 +17,7 @@
       return $http.get('/'+ id +'/decks')
       },
       paused: function(data){
-            currentID = data       
+            this.currentID = data       
        },
        getID: function(){
         return currentID
@@ -29,6 +29,7 @@
       },
 
       addRecommendedDeck: function(data, id){
+        console.log("data:", data, "id:", id)
         return $http.post('/'+ id +'/add', data)
       }
     };

@@ -39,9 +39,9 @@ router.post('/register', function(req, res, next){
 		password: req.body.password
 	}).returning('*')
  .then(function (member) {
- 	console.log(member)
+ 	// console.log(member)
       var token = generateToken(member[0].email);
-      console.log(member)
+      // console.log(member)
       return res.json({
         token: token,
         data: member[0].id
@@ -71,7 +71,7 @@ router.get('/:id/quiz', function(req, res, next) {
 		.leftJoin('cards','cards.deck_id','decks.id')
 		.where('decks.id',id)
 		.then(function(data){
-			console.log(data)
+			// console.log(data)
 		   res.send(data);
 
 		})
