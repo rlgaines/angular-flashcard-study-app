@@ -1,24 +1,22 @@
-   <navbar-dir></navbar-dir>
-   
+<navbar-dir></navbar-dir>
+
 <div class="container">
-  <div class="row">
-  	<div class="col-md-12">
-  		<div class="list-group">
-  			<a href="#/{{userId}}/new" class="list-group-item list-group-item-info"><h2><span class="glyphicon glyphicon-plus-sign"></span> Create a New Deck to Study</h2></a>
-  		</div>
-  	</div>	
-  </div>	
-  <hr>
+<div class="row">
+  <div class="col-md-12">
+    <div class="list-group">
+      <a href="#/{{userId}}/new" class="list-group-item list-group-item-info"><h2><span class="glyphicon glyphicon-plus-sign"></span> Create a New Deck to Study</h2></a>
+    </div>
+  </div>
 </div>
-
+<hr>
+</div>
 <recommended-quizes duplicate="deck"></recommended-quizes>
-
 <div class="container" id="mainCont">
-  <div class="row" >
-  	<div class="col-md-4" ng-repeat="deck in included">
-  		  <blockquote class="quote-box">
+<div class="row" >
+  <div class="col-md-4" ng-repeat="deck in included">
+    <blockquote class="quote-box">
       <p class="quote-text">
-      {{deck.name}}
+        {{deck.name}}
       </p>
       <img ng-src="{{deck.image}}">
       <hr>
@@ -31,6 +29,6 @@
         </p>
       </div>
     </blockquote>
-  	</div>
   </div>
+</div>
 </div>

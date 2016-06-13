@@ -1,21 +1,20 @@
-   <navbar-dir></navbar-dir>
+<navbar-dir></navbar-dir>
 <div class="container" id="scoreboard">
 <div class="jumbotron">
- <h2>Score Yourself</h2>
-  	<div class="progress">
-	  <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: {{answer.right}}%">
-	    {{answer.right}} Points
-	  </div>
-	</div>
-	<div class="progress">
-	  <div class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width:{{answer.wrong}}%">
-	   -{{answer.wrong}} Points
-	  </div>
-	</div>
+  <h2>Score Yourself</h2>
+  <div class="progress">
+    <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: {{answer.right}}%">
+      {{answer.right}} Points
+    </div>
+  </div>
+  <div class="progress">
+    <div class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width:{{answer.wrong}}%">
+      -{{answer.wrong}} Points
+    </div>
+  </div>
   <p><a class="right btn btn-success btn-lg" ng-model-="button" ng-click="answer.right= answer.right + 10;" role="button">Correct Answer</a><a class="right btn btn-danger btn-lg" ng-model-="button" ng-click="answer.wrong= answer.wrong + 10;" role="button">Incorrect Answer</a></p>
 </div>
 </div>
-
 <div class="container" id="quizes" >
 <div class="row">
   <div class="col-md-12" index="key" ng-repeat="(key, info) in quiz track by key">
@@ -23,18 +22,16 @@
       <div class="caption">
         <h2>Question:</h2>
         <h4>{{info.question}}</h4>
-
         <div ng-hide="!togglepost">
-        <hr>
+          <hr>
           <h2>Answer:</h2>
-        	<h4>{{info.answer}}</h4>
-        </div>  
+          <h4>{{info.answer}}</h4>
+        </div>
         <br>
         <p><a ng-click="togglepost = !togglepost" ng-hide="togglepost" class="btn btn-primary" role="button">Check Answer</a><a class="btn btn-default" ng-hide="!togglepost" ng-click="togglepost = !togglepost" role="button">Hide Answer</a></p>
+      </div>
     </div>
   </div>
 </div>
 </div>
-</div>
 <recommended-quizes></recommended-quizes>
- 

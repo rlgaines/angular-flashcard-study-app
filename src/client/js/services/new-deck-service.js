@@ -1,22 +1,21 @@
-(function () {
+(function() {
 
-  'use strict';
+    'use strict';
 
 
-  angular.module('myApp')
-    .service('newDeckService', newDeckService);
+    angular.module('myApp')
+        .service('newDeckService', newDeckService);
 
-  newDeckService.$inject = ['$http', '$window'];
+    newDeckService.$inject = ['$http', '$window'];
 
-  function newDeckService($http, $window) {
-    var data = {};
-    return {
+    function newDeckService($http, $window) {
+        var data = {};
+        return {
 
-      newDeck: function(data, id) {
-        return $http.post('/'+ id +'/new', data);
-        // console.log('service:',data)
-      }
-    };
-  }
+            newDeck: function(data, id) {
+                return $http.post('/' + id + '/new', data);
+            }
+        };
+    }
 
 })();

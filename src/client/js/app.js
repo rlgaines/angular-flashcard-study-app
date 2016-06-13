@@ -1,9 +1,9 @@
-(function () {
+(function() {
 
-  'use strict';
+    'use strict';
 
-  angular.module('myApp', [
-    'ngRoute'
-  ]);
+    angular.module('myApp', [
+        'ngRoute'
+    ]);
 
 })();
